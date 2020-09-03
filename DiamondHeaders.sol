@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 pragma experimental ABIEncoderV2;
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/introspection/ERC165.sol";
 
 interface IDiamond {
     /// @notice Add/replace/remove any number of functions and optionally execute
@@ -65,7 +66,7 @@ interface IDiamondLoupe {
     function facetAddress(bytes4 _functionSelector) external view returns(address);
 }
 
-interface IERC165 {
+/*interface IERC165 {
     /// @notice Query if a contract implements an interface
     /// @param interfaceId The interface identifier, as specified in ERC-165
     /// @dev Interface identification is specified in ERC-165. This function
@@ -73,7 +74,7 @@ interface IERC165 {
     /// @return `true` if the contract implements `interfaceID` and
     ///  `interfaceID` is not 0xffffffff, `false` otherwise
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
-}
+}*/
 
 interface IERC173Events {
     event OwnershipTransferred(
