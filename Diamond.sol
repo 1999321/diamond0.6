@@ -16,7 +16,7 @@ import "./DiamondLoupeFacet.sol";
 
 contract Diamond is IERC173Events, IERC165, DiamondStorageContract, DiamondFacet {
 
-    constructor(address owner) payable {
+    constructor(address owner) public payable {
         DiamondStorage storage ds = diamondStorage();
         ds.contractOwner = owner;
         emit OwnershipTransferred(address(0), owner);
@@ -92,7 +92,7 @@ contract Diamond is IERC173Events, IERC165, DiamondStorageContract, DiamondFacet
     fallback() external payable {
         DiamondStorage storage ds;
         bytes32 position = DiamondStorageContract.DIAMOND_STORAGE_POSITION;
-        assembly { ds.slot := position }
+        assembly { ds_slot := position }
         address facet = address(bytes20(ds.facets[msg.sig]));  
         require(facet != address(0));      
         assembly {            
