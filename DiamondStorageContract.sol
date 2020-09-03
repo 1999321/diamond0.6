@@ -34,6 +34,6 @@ contract DiamondStorageContract {
 
     function diamondStorage() internal pure returns(DiamondStorage storage ds) {
         bytes32 position = DIAMOND_STORAGE_POSITION;
-        assembly { ds.slot := position }
+        assembly { ds_slot := position }
     }
 }
