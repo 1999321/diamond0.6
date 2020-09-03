@@ -14,7 +14,7 @@ import "./DiamondHeaders.sol";
 import "./DiamondFacet.sol";
 import "./DiamondLoupeFacet.sol";
 
-contract Diamond is IERC173Events, IERC165, DiamondStorageContract, DiamondFacet {
+contract Diamond is IERC173Events, IERC165D, DiamondStorageContract, DiamondFacet {
 
     constructor(address owner) public payable {
         DiamondStorage storage ds = diamondStorage();
@@ -55,14 +55,14 @@ contract Diamond is IERC173Events, IERC165, DiamondStorageContract, DiamondFacet
         );
 
         // Adding supportsInterface function
-        cut[3] = abi.encodePacked(address(this), IERC165.supportsInterface.selector);
+        cut[3] = abi.encodePacked(address(this), IERC165D.supportsInterfaceD.selector);
 
          // execute non-standard internal diamondCut function to add functions
         diamondCut(cut);
         
         // adding ERC165 data
         // ERC165
-        ds.supportedInterfaces[IERC165.supportsInterface.selector] = true;
+        ds.supportedInterfaces[IERC165D.supportsInterfaceD.selector] = true;
 
         // DiamondCut
         ds.supportedInterfaces[IDiamond.diamondCut.selector] = true;
@@ -82,7 +82,7 @@ contract Diamond is IERC173Events, IERC165, DiamondStorageContract, DiamondFacet
     // This is an immutable functions because it is defined directly in the diamond.
     // Why is it here instead of in a facet?  No reason, just to show an immutable function.
     // This implements ERC-165.
-    function supportsInterface(bytes4 _interfaceId) external override view returns (bool) {
+    function supportsInterfaceD(bytes4 _interfaceId) external override view returns (bool) {
         DiamondStorage storage ds = diamondStorage();
         return ds.supportedInterfaces[_interfaceId];
     }
