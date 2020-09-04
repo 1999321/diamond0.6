@@ -81,7 +81,7 @@ contract DiamondFacet is IDiamond, DiamondStorageContract {
     // 'bytes[] memory _diamondCut', and it does not issue the DiamondCut event.
     // The code is duplicated to prevent copying calldata to memory which
     // causes an error for an array of bytes arrays.
-    function externalCut(bytes[] memory _diamondCut) internal {
+    function externalCut(bytes[] calldata _diamondCut) internal {
         DiamondStorage storage ds = diamondStorage();
         require(msg.sender == ds.contractOwner, "Must own the contract.");
         SlotInfo memory slot;
